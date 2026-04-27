@@ -1,0 +1,334 @@
+1. Session Hijacking
+Definition
+
+Taking control of user session using stolen session ID/cookie.
+
+Tool
+
+Burp Suite
+
+Steps
+Login to test site
+Capture request in Burp
+Copy session cookie
+Use cookie in another browser
+Session gets access
+Prevention
+HTTPS
+Secure cookies
+HttpOnly
+Session timeout
+Viva
+Session token identifies logged-in user
+Cookie theft causes hijacking
+One Line
+
+Steal cookie = steal login session.
+
+2. Password Cracking
+Definition
+
+Recovering weak passwords using tools.
+
+Tools
+
+John the Ripper
+Hydra
+
+Methods
+Dictionary attack
+Brute force
+Hash cracking
+Commands
+john hash.txt
+hydra -l admin -P rockyou.txt ftp://IP
+Prevention
+Strong passwords
+MFA
+Account lockout
+Viva
+Hash is encrypted password form
+Brute force tries many passwords
+One Line
+
+Weak password = easy target.
+
+3. RIP Routing Protocol
+Full Form
+
+Routing Information Protocol
+
+Tool
+
+Cisco Packet Tracer
+
+Key Points
+Dynamic routing
+Uses hop count
+Max hop = 15
+Small networks
+Commands
+router rip
+version 2
+network x.x.x.x
+Viva
+Metric = hop count
+Updates every 30 sec
+One Line
+
+Shortest hops route.
+
+4. OSPF Routing Protocol
+Full Form
+
+Open Shortest Path First
+
+Key Points
+Link state protocol
+Uses cost metric
+Fast convergence
+Large networks
+Commands
+router ospf 1
+network x.x.x.x area 0
+Viva
+Uses Dijkstra algorithm
+Area 0 = backbone
+One Line
+
+Fast smart routing.
+
+5. SQLMap
+Purpose
+
+Detect SQL Injection vulnerability.
+
+Command
+sqlmap -u URL --dbs
+Can Do
+Find databases
+Tables
+Dump data
+Viva
+Automates SQL injection testing
+One Line
+
+Tests database vulnerabilities.
+
+6. HTTrack
+Purpose
+
+Copies website locally.
+
+Command
+httrack http://site.com
+Viva
+Creates offline mirror website
+One Line
+
+Downloads full website.
+
+7. hping
+Purpose
+
+Craft custom packets.
+
+Command
+hping3 -S IP -p 80
+Uses
+Port test
+Firewall test
+Packet analysis
+One Line
+
+Advanced ping tool.
+
+8. Burp Suite
+Purpose
+
+Intercept web traffic.
+
+Uses
+Modify requests
+Capture cookies
+Test parameters
+Viva
+Works as proxy between browser and server
+One Line
+
+Best web testing proxy.
+
+9. DVWA
+Full Form
+
+Damn Vulnerable Web Application
+
+Purpose
+
+Practice web attacks safely.
+
+Modules
+SQLi
+XSS
+CSRF
+Brute Force
+File Upload
+Viva
+Used in lab only
+One Line
+
+Practice hacking safely.
+
+10. USB Forensics
+Tool
+
+USBDeview
+
+Finds
+Connected USB devices
+Plug time
+Serial number
+One Line
+
+USB history checker.
+
+11. Last Activity
+Tool
+
+LastActivityView
+
+Shows
+Opened files
+Programs run
+Installations
+One Line
+
+Recent PC actions.
+
+12. Browser Artifacts
+Tool
+
+BrowsingHistoryView
+
+Shows
+Visited sites
+Time
+Browser name
+One Line
+
+Internet history evidence.
+
+13. Event Logs
+Tool
+
+Event Viewer
+
+IDs
+4624 Login success
+4625 Login fail
+6005 Startup
+6006 Shutdown
+One Line
+
+System activity records.
+
+14. ARP Poisoning
+Tool
+
+Ettercap
+
+Concept
+
+Fake ARP reply changes MAC mapping.
+
+Result
+
+Traffic redirects through attacker.
+
+Viva
+ARP = IP to MAC
+MITM possible
+One Line
+
+Fake ARP = traffic capture.\
+
+
+
+🔥 1. FTK IMAGER (Disk + Memory)
+🔹 Key Points
+FTK Imager = acquisition tool
+Used to create disk image (.E01) and memory dump (.mem)
+Works in read-only mode
+🔹 Important Lines
+Disk image = exact copy of storage
+Cannot save image on same drive
+E01 = compressed + secure format
+RAM = volatile (lost after shutdown)
+🔹 Viva Q
+Why imaging? → Preserve evidence
+Why RAM first? → Volatile data
+🔥 2. AUTOPSY (Analysis + Deleted Files)
+🔹 Key Points
+Autopsy = analysis tool
+Used for:
+Deleted files
+User activity
+File system analysis
+🔹 Important Lines
+Deleted files remain until overwritten
+Uses ingest modules for analysis
+🔹 Viva Q
+What are deleted files? → Not erased, just hidden
+What is ingest? → Automated analysis process
+🔥 3. FILE RECOVERY (Recoverit / Recuva)
+🔹 Key Points
+Recuva / Recoverit = recovery tools
+Recover deleted/lost files
+🔹 Important Lines
+Recovery depends on overwrite
+Always save recovered file to different location
+🔹 Viva Q
+Why file recoverable? → Data still exists
+When not recoverable? → Overwritten
+🔥 4. PHOTOREC
+🔹 Key Points
+PhotoRec
+Works using file signatures
+Ignores file system
+🔹 Important Lines
+Works even if file system damaged
+File names may change
+🔹 Viva Q
+Advantage? → Deep recovery
+Disadvantage? → No original file names
+🔥 5. REDLINE (Memory Forensics)
+🔹 Key Points
+Redline
+Used for:
+Processes
+Network activity
+Malware detection
+🔹 Important Lines
+Uses Collector
+Output = AnalysisSession folder
+MRI = Malware Risk Index
+🔹 Viva Q
+What is MRI? → Risk score
+Why collector? → Gather system data
+⚡ MOST IMPORTANT 1-LINERS (REMEMBER THESE)
+Disk image = exact copy of disk
+RAM = volatile memory
+Deleted ≠ erased
+Overwrite = permanent loss
+FTK = acquisition
+Autopsy = analysis
+PhotoRec = signature-based recovery
+Redline = memory + malware analysis
+⚡ COMMON MISTAKES (EXAM)
+Saving image on same drive ❌
+Selecting wrong folder in Redline ❌
+Not running collector ❌
+Recovering to same location ❌
+⚡ FINAL SUPER SHORT FLOW
+
+👉 FTK → Create Image / RAM → Autopsy → Analyze → Recovery tools → Redline → Analyze processes
