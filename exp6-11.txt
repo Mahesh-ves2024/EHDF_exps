@@ -1,0 +1,386 @@
+EXP6:-
+🔹 THEORY (Write in 4–5 lines)
+Memory acquisition means capturing RAM (volatile memory) data.
+RAM contains running processes, passwords, network sessions.
+It is called volatile because data is lost when the system shuts down.
+FTK Imager is used to capture memory and create forensic images.
+Autopsy is used to analyze evidence like files, activity, and deleted data.
+
+🔹 PROCEDURE
+🧪 PART 1: MEMORY CAPTURE (FTK Imager)
+Open FTK Imager → Run as Administrator
+Click File → Capture Memory
+Choose location (Desktop)
+Enter file name (ram.mem)
+Tick Include Pagefile
+Click Capture Memory
+Wait till process completes
+📸 Screenshot: During and after capture
+
+🔍 PART 2: VIEW MEMORY (FTK Imager)
+File → Add Evidence Item
+Select Image File
+Open .mem file
+View basic data
+📸 Screenshot: Memory file loaded
+
+🔎 PART 3: ANALYSIS (Autopsy)
+Open Autopsy → Create New Case
+Enter case name → Next → Finish
+Add Data Source → Select memory/image file
+Click Next → Finish
+View results (files, activity, etc.)
+📸 Screenshot: Case dashboard / analysis
+
+🔹 RESULT
+Memory was successfully captured and analyzed.
+ Important system data like processes and files were observed.
+
+🔹 CONCLUSION
+FTK Imager helps in capturing volatile memory, and Autopsy helps in analyzing forensic evidence effectively.
+🔹 AIM
+To perform image acquisition and analysis using FTK Imager and Autopsy
+
+🔹 THEORY (5–6 lines, simple)
+Disk imaging means creating an exact copy of a storage device.
+It is used in digital forensics to preserve evidence.
+Image formats like E01 ensure data integrity and compression.
+FTK Imager is used for acquisition (creating image).
+Autopsy is used for analysis (view files, deleted data, activity).
+Image should be stored on a different drive to avoid data overwrite.
+
+🔹 PROCEDURE (SHORT + PRACTICAL)
+🧪 PART 1: IMAGE ACQUISITION (FTK Imager)
+Open FTK Imager → Run as Administrator
+Click File → Create Disk Image
+Select:
+👉 Logical Drive (C:)
+Click Next
+Select E01 format → Next
+Fill basic details → Next
+Click Add → Choose location:
+❗ Select USB / D: drive (NOT C:)
+Click Finish → Start
+📸 Screenshot: Image creation + completion
+
+🔍 PART 2: VERIFY IMAGE (FTK Imager)
+File → Add Evidence Item
+Select Image File
+Open .E01 file
+Expand folders and view files
+📸 Screenshot: Files visible
+
+🔎 PART 3: ANALYSIS (Autopsy)
+Open Autopsy → Create New Case
+Enter name → Next → Finish
+Click Add Data Source
+Select Disk Image / VM File
+Choose .E01 file
+Click Next → Finish
+⏳ Wait for processing
+
+🔍 VIEW RESULTS
+File Views → All Files
+Deleted Files
+Recent Activity
+📸 Screenshot: Any analysis result
+
+🔹 RESULT
+Disk image was successfully created and analyzed, and system data and files were observed.
+
+🔹 CONCLUSION
+FTK Imager helps in safe acquisition, and Autopsy helps in detailed forensic analysis.
+
+Exp7:
+🔹 AIM
+To recover deleted files using PhotoRec
+
+🔹 THEORY (very short)
+PhotoRec recovers deleted files by scanning disk sectors.
+It ignores file system and uses file signatures.
+Works even if file system is damaged.
+Can recover images, videos, documents, etc.
+
+🔹 PROCEDURE (SUPER SIMPLE)
+🧪 STEP 1: Open PhotoRec
+Run photorec.exe  via https://photorec.net/#download
+Black window will open (CLI tool)
+
+🧪 STEP 2: Select Disk
+Use ↑ ↓ keys
+Select your disk (e.g., C: or HDD)
+Press Enter
+
+🧪 STEP 3: Select Partition
+Select partition (usually shown automatically)
+Press Enter
+
+🧪 STEP 4: Choose File System
+Select:
+👉 Other (FAT/NTFS)
+Press Enter
+
+🧪 STEP 5: Choose Scan Type
+Select:
+👉 Free (only deleted files, faster)
+OR Whole (full scan)
+👉 In exam → choose Free
+
+🧪 STEP 6: Select Recovery Location
+Choose a folder (Desktop recommended)
+Press C (IMPORTANT to start)
+
+🧪 STEP 7: Recovery Starts
+Files will start recovering
+Stored in folder like:
+recup_dir.1
+📸 Screenshot: Recovery screen
+
+🧪 STEP 8: Check Files
+Open recovery folder
+View recovered files
+📸 Screenshot: Recovered files
+
+🔹 RESULT
+Deleted files were successfully recovered using PhotoRec.
+
+🔹 CONCLUSION
+PhotoRec efficiently recovers deleted files using file signatures, even without file system support.
+
+
+Exp8:-
+🔹 AIM
+To perform memory forensics analysis using Redline
+
+🔹 THEORY (write 4–5 lines)
+Redline is used for memory and system forensic analysis.
+It collects data like running processes, network activity, and system changes.
+It helps detect malware and suspicious behavior.
+It uses a collector to gather system data.
+The collected data is analyzed using an analysis session.
+
+🔹 PROCEDURE (STEP-BY-STEP)
+🧪 PART 1: CREATE COLLECTOR
+Open Redline
+Click 👉 Create a Standard Collector
+Select:
+✔ Standard Collector
+Save it (e.g., Desktop / exp8 folder)
+👉 This creates a folder with:
+x64
+x86
+.bat files
+
+🧪 PART 2: RUN COLLECTOR (IMPORTANT)
+Open saved folder
+Double-click:
+ 👉 RunRedlineAudit.bat
+ OR run .exe inside x64
+Command window opens
+Wait 1–3 minutes
+👉 After completion:
+New folder created:
+Sessions → AnalysisSession...
+📸 Screenshot: Command window + created folder
+
+🧪 PART 3: LOAD DATA IN REDLINE
+Open Redline
+Click 👉 Open a Saved Analysis
+Browse to:
+Sessions → AnalysisSession
+Select the folder (NOT file)
+Click OK
+⏳ Wait for loading
+
+🧪 PART 4: ANALYSIS
+After loading, check:
+🔍 Processes
+View running programs
+🌐 Network Activity
+View connections
+⚠️ Malware Risk Index (MRI)
+Shows suspicious processes
+📸 Screenshots:
+Processes list
+MRI results
+
+🔹 RESULT
+System memory data was successfully collected and analyzed to identify system activities.
+
+🔹 CONCLUSION
+Redline helps in identifying suspicious processes and analyzing system behavior efficiently.
+ Exp9:
+AIM
+To identify the last connected USB device and check recent user/system activity using forensic tools.
+
+THEORY
+Windows stores USB history in registry and system logs.
+USBDeview shows connected/disconnected USB devices with timestamps.
+LastActivityView shows recent files opened, apps run, installs, crashes, etc.
+Both tools are portable (no install required).
+Useful in cybercrime, insider threat, and evidence analysis.
+
+TOOL 1: USBDeview
+Official Download Link
+USBDeview Official Download
+What to Download
+64-bit Windows (recommended): Download USBDeview for x64 systems
+32-bit Windows: Download USBDeview
+Steps
+Open official link.
+Scroll down to Download USBDeview for x64 systems.
+Download ZIP file.
+Right click ZIP → Extract All.
+Open folder → Run USBDeview.exe.
+Sort by Last Plug/Unplug Date column.
+Top latest device = last connected USB.
+Common Mistakes
+Do not connect new USB before checking.
+Do not download from random sites.
+Extract ZIP first.
+
+TOOL 2: LastActivityView
+Official Download Link
+LastActivityView Official Download
+What to Download
+Download main ZIP file (supports 32/64 bit Windows)
+Steps
+Open official link.
+Scroll to download section.
+Download ZIP file.
+Extract ZIP.
+Run LastActivityView.exe.
+Wait for scan.
+View timeline of:
+Opened files
+Run programs
+Installations
+Shutdown/startup
+Crashes
+Sort by Action Time for latest activity.
+Common Mistakes
+Running tool from ZIP directly.
+Ignoring date/time column.
+Not sorting newest first.
+
+RESULT
+The last connected USB device was identified successfully. Recent user/system activities were displayed in timeline format.
+
+CONCLUSION
+USBDeview helps trace USB usage. LastActivityView helps reconstruct recent system activity. Both are useful forensic evidence tools.
+
+Exp10:
+AIM
+To extract browser history artifacts and analyze Windows Event Logs for forensic investigation.
+
+THEORY
+Browsers store history, downloads, cookies, cache, and login data locally.
+These records are called browser artifacts.
+Windows stores system, security, login, shutdown, and error logs in Event Logs.
+Browser artifacts help trace user internet activity.
+Event Logs help build timeline of user/system actions.
+Useful in cybercrime and incident response.
+
+TOOL 1: Extracting Browser Artifacts
+Recommended Tool: BrowsingHistoryView
+Official Download Link
+BrowsingHistoryView Official Download
+
+What It Supports
+Google Chrome
+Mozilla Firefox
+Microsoft Edge
+Internet Explorer
+
+Steps
+Open official link.
+Download ZIP file.
+Right click ZIP → Extract All.
+Open extracted folder.
+Run BrowsingHistoryView.exe.
+Tool auto-detects installed browsers.
+View:
+Visited URLs
+Visit time
+Browser used
+Number of visits
+User profile
+Sort by Visit Time for latest activity.
+
+Common Mistakes
+Running from ZIP directly.
+Browser open during scan may lock files.
+Not sorting by latest time.
+
+TOOL 2: Event Log Analysis
+Method A: Windows Event Viewer (Built-in)
+Steps
+Press Win + R
+Type eventvwr.msc → Enter
+Open:
+Windows Logs → System
+Windows Logs → Security
+Windows Logs → Application
+Check logs for:
+Login / Logout
+Shutdown / Startup
+Errors
+Software install
+USB/device events
+
+Method B: NirSoft FullEventLogView
+Official Download Link
+FullEventLogView Official Download
+
+Steps
+Download ZIP.
+Extract file.
+Run FullEventLogView.exe.
+View all logs in one screen.
+Sort by date/time or Event ID.
+
+Important Event IDs (Exam Use)
+4624 = Successful Login
+4625 = Failed Login
+6005 = Event Log service started
+6006 = System shutdown
+1074 = Restart / Shutdown by user
+
+RESULT
+Browser history artifacts such as visited websites and timestamps were extracted successfully. Windows Event Logs were analyzed to identify login, shutdown, and system events.
+
+CONCLUSION
+Browser artifacts reveal internet usage history. Event Logs help reconstruct system timeline and suspicious activities.
+Exp11:
+AIM
+
+To demonstrate ARP Poisoning attack in a controlled lab using Kali Linux and Ettercap.
+
+THEORY
+ARP stands for Address Resolution Protocol.
+It converts IP address into MAC address in local network.
+ARP has no authentication mechanism.
+Attacker sends fake ARP replies to victim and gateway.
+Victim traffic passes through attacker system (MITM).
+Used for learning network security in authorized lab only.
+PROCEDURE
+Open Kali Linux.
+Run Ettercap using command:
+sudo ettercap -G
+Select Sniff → Unified Sniffing.
+Choose interface eth0.
+Click Hosts → Scan for hosts.
+Open Hosts List.
+Select victim IP → Add to Target 1.
+Select router IP → Add to Target 2.
+Go to Mitm → ARP Poisoning.
+Tick Sniff remote connections and start.
+Observe changed ARP entries / traffic flow.
+Stop attack after demonstration.
+RESULT
+
+ARP Poisoning was successfully demonstrated. Victim ARP table was modified and traffic redirection was observed.
+
+CONCLUSION
+
+ARP Poisoning exploits insecure ARP protocol. It can cause Man-in-the-Middle attacks, so network protection is necessary.
