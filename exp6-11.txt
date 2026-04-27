@@ -1,4 +1,4 @@
-EXP6:-
+ EXP6:-
 🔹 THEORY (Write in 4–5 lines)
 Memory acquisition means capturing RAM (volatile memory) data.
 RAM contains running processes, passwords, network sessions.
