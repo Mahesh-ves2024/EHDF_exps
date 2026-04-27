@@ -63,6 +63,10 @@ sudo hping3 -S -p 80 -c 5 https://testphp.vulnweb.com/
 sudo hping3 -S -p 80 -c 5 testphp.vulnweb.com 
 
 
+exp5-
+
+
+
 
 
 
