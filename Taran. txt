@@ -1,0 +1,227 @@
+# Password Cracking
+nano wordlist.txt
+password
+123456
+admin
+admin123
+welcome
+test123
+
+ctrl x --> y --> enter
+
+echo -n password | md5sum
+nano hash.txt
+paste hash --> ctrl x --> y --> enter
+
+hashcat -m 0 hash.txt wordlist.txt --show
+
+
+
+#Configuring RIP
+End devices --> 2 generic PC
+Switch --> 2 generic
+Router --> 2 generic
+
+PC0 click --> desktop --> ip config
+IP ADD - 192.168.1.2,  subnet auto (255.255.255.0) , Default gateway - 192.168.1.1 --> close
+PC1 click --> desktop --> ip config
+IP ADD - 192.168.2.2,  subnet auto (255.255.255.0) , Default gateway - 192.168.2.1 --> close
+
+Router 0 click --> config --> fasteternent0/0
+IP ADD - 192.168.1.1, subnet auto , port status on
+Router 1 click --> config --> fasteternent0/0
+IP ADD - 192.168.2.1, subnet auto , port status on
+
+Router 0 click --> serial 2/0
+clock rate - 6400 , IP ADD - 10.10.0.2,  subent auto , port status on
+Router 1 click --> serial 2/0
+clock rate - not set , IP ADD - 10.10.0.3,  subent auto , port status on
+
+Router 0 click --> RIP
+Network - 192.168.1.0 add and 10.0.0.0 add
+Setting --> NVRAM save
+Router 1 click --> RIP
+Network - 192.168.2.0 add and 10.0.0.0 add
+Setting --> NVRAM save
+
+
+
+
+# OSPF
+End devices --> 2 generic PC
+Switch --> 2 generic
+Router --> 3 generic
+
+PC0 click --> desktop --> ip config
+IP ADD - 192.168.1.11,  subnet auto (255.255.255.0) , Default gateway - 192.168.1.1 --> close
+PC1 click --> desktop --> ip config
+IP ADD - 155.165.1.11,  subnet auto (255.255.255.0) , Default gateway - 155.165.1.1 --> close
+
+Router 0 click --> config --> fasteternent0/0
+IP ADD - 192.168.1.1, subnet auto , port status on
+Router 1 click --> config --> fasteternent0/0
+IP ADD - 155.165.1.1 , subnet auto , port status on
+
+Router 2 click --> serial 2/0
+clock rate - 64000 , IP ADD - 10.0.0.1,  subent auto , port status on
+Router 0 click --> serial 2/0
+clock rate - not set , IP ADD - 10.0.0.2,  subent auto , port status on
+
+Router 0 click --> serial 3/0
+clock rate - 64000 , IP ADD - 20.0.0.1,  subent auto , port status on
+Router 1 click --> serial 2/0
+clock rate - not set , IP ADD - 20.0.0.2,  subent auto , port status on
+
+Router 2 click --> serial 3/0
+clock rate - 64000 , IP ADD - 30.0.0.1,  subent auto , port status on
+Router 1 click --> serial 2/0
+clock rate - not set , IP ADD - 30.0.0.2,  subent auto , port status on
+
+Router 0 --> CLI
+exit
+router ospf 1
+network 192.168.1.0 0.0.0.255 area 0
+network 10.0.0.0 0.255.255.255 area 0
+network 20.0.0.0 0.255.255.255 area 0
+exit 
+
+Router 2 --> CLI
+exit
+router ospf 1
+network 10.0.0.0 0.255.255.255 area 0
+network 30.0.0.0 0.255.255.255 area 0
+exit 
+
+Rounter 1 --> CLI
+exit
+router ospf 1
+network 20.0.0.0 0.255.255.255 area 0
+network 30.0.0.0 0.255.255.255 area 0
+network 155.165.1.0 0.0.255.255 area 0
+exit 
+
+
+
+# SQL MAP
+sqlmap -u 'http:...' --dbs
+sqlmap -u 'http:...' -D database_name --tables
+sqlmap -u 'http:...' -D database_name -T table_name --colums
+
+# HTTRACK
+Open httrack in kali
+httrack --> enter
+Enter project name : EHDF
+Base path : /root/Desktop/EHDF
+Enter URL : testphp vulnweb com
+
+# HPING
+hping3 --version
+hping3 -h
+hping3 -S -p 80 -c 3 testphp vulnweb com or google com
+
+
+
+
+
+
+
+
+
+
+
+
+Exp 5 :- DVWA
+
+1 └─$ sudo systemctl start docker    
+[sudo] password for svs: 
+
+2└─$ sudo docker pull vulnerables/web-dvwa
+
+3 └─$ sudo docker run -d -p 80:80 vulnerables/web-dvwa
+
+4 └─$ sudo docker run -d -p 80:80 vulnerables/web-dvwa
+
+5 open website http://127.0.0.1/login.php user admin password same password
+
+6 SQL Injection : 1' OR '1'='1 and 1' UNION SELECT 1, version()#
+
+
+7 Command injection : 127.0.0.1; whoami or ls or blank
+
+8 XSS : your name and message then refresh page for reflection
+
+
+
+Exp 8 :- Redline
+Step 1:-Redline App
+Collect data —>create standard collector
+Select windows
+In edit your script check the tick box of acquire memory image
+Also tick the checkboxes
+Disk enumeration/registry enumeration/event logs/browser history
+Click ok
+Choose where to save collector
+After clicking OK collector will be created.
+Now go to that collector location and run that audit file(Collector) as administrator
+
+Step 2:-Windows File Manager
+Now go to Sessions—>Analysis Session 1 open that file(Madiant Analysis file)
+Than in Redline when it will open you can View
+System information
+Processes
+Hierarchical Processes(To list parent processes or child processes)
+Registry Hives(To see registry entries/keys/names)
+Browser URL History(list of URL visited by that machine)
+Timeline
+Tags and Comments
+Acquisition History.
+We can also apply filters or tag any entries/registry entries to analyze it later
+And those tagged entries can be seen in Tags and Comments Section
+
+
+
+
+Exp 9-10
+
+9A :- USBDeview (Nirsoft)
+9B :- LastActivityView (Nirsoft)
+10A :- BrowsingHistoryView (Nirsoft)
+10B :- Event Viewer (Default Windows Tool)
+
+
+
+
+Exp 11 :- Ettercap
+Step 1:-Kali Terminal
+Ettercap -G
+Enter
+
+Step 2:-Ettercap GUI
+Sniff—>Unified Sniffing
+Eth0
+Ok
+Sniffing started
+
+Step 3:-Ettercap GUI
+Hosts—>Scan For Hosts
+Hosts—>Hosts List
+
+Step 4:-
+Check for Windows IP(Victim IP)
+Then in Ettercap GUI(Kali)
+Check if it is present or not 
+It will be target 1(Victim).
+Target 2 will be router IP
+I.e target 2 will be gateway to perform sniffing on target 1
+
+So highlight victim IP and press add target 1 then select router IP and press add target 2.
+
+Step 5:-Ettercap GUI
+Actual MITM Attack
+Select Mitm—>ARP Poisoning—>Sniff remote connections—>Ok.
+
+Start—>Start Sniffing
+
+Step 6:-In Windows
+Open a site and try signing in(attempt to sign in)
+Ettercap will show Server Ip/Http Port/Username/Password after that.
