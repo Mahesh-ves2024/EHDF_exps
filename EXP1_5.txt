@@ -64,9 +64,250 @@ sudo hping3 -S -p 80 -c 5 testphp.vulnweb.com
 
 
 exp5-
+To demonstrate common web attack scenarios using DVWA in a controlled lab environment.
+THEORY
+DVWA is a purposely vulnerable website for learning security.
+It contains common web vulnerabilities.
+Used to practice attacks safely in lab.
+Helps understand both attack methods and prevention.
+Security levels: Low, Medium, High.
+REQUIREMENTS
+Kali Linux / XAMPP / Localhost
+DVWA installed
+Browser
+Apache + MySQL running
+DETAILED PROCEDURE
+STEP 1: Start DVWA
+On Kali Linux
+Open terminal:
+Bash
+sudo service apache2 start
+sudo service mysql start
+Open Browser
+Go to:
+Plain text
+http://localhost/dvwa
+STEP 2: Login
+Default credentials:
+Plain text
+Username: admin
+Password: password
+Login successfully.
+STEP 3: Reset Database
+Click DVWA Security
+Set level = Low
+Click Submit
+Then go:
+Setup / Reset DB if needed.
+ATTACK SCENARIO 1: SQL Injection
+Steps
+Open SQL Injection module
+In User ID box type:
+Plain text
+1' OR '1'='1
+Click Submit
+Result
+All users data may display.
+Learn
+Input validation missing.
+ATTACK SCENARIO 2: Reflected XSS
+Steps
+Open XSS (Reflected)
+Enter:
+HTML
+<script>alert('XSS')</script>
+Submit
+Result
+Popup appears.
+Learn
+Script executed in browser.
+ATTACK SCENARIO 3: Command Injection
+Steps
+Open Command Injection
+Enter:
+Plain text
+127.0.0.1 && whoami
+Submit
+Result
+Ping output + username shown.
+Learn
+OS command appended.
+ATTACK SCENARIO 4: Brute Force
+Steps
+Open Brute Force module
+Try common passwords:
+Plain text
+admin / admin
+admin / password
+Result
+Weak credentials may login.
+Learn
+Weak passwords are risky.
+ATTACK SCENARIO 5: File Upload
+Steps
+Open File Upload
+Upload sample file (test image/text)
+Submit
+Result
+File stored on server.
+Learn
+Unsafe upload may allow malicious files.
+ATTACK SCENARIO 6: CSRF
+Steps
+Open CSRF module
+Change password through forged request.
+Learn
+No request verification.
+COMMON MISTAKES
+Apache/MySQL not started
+Wrong URL
+Security level High while testing
+No database reset
+Typing payload incorrectly
+RESULT
+Multiple attack scenarios like SQL Injection, XSS, Command Injection, Brute Force, and File Upload were demonstrated successfully.
+CONCLUSION
+DVWA provides safe practical learning of web vulnerabilities and helps understand prevention techniques.
+VIVA POINTS
+DVWA full form = Damn Vulnerable Web Application
+Used for ethical hacking practice
+SQLi targets database queries
+XSS runs script in browser
+Brute force tries many passwords
+FINAL FLOW
+Start Apache/MySQL → Open DVWA → Login → Set Low Security → Open Module → Enter Payload → Observe Output
 
 
+FIX IT NOW (Detailed Steps)
+STEP 1: Check Apache Working
+Open:
+Plain text
+http://localhost
+If Apache page opens = good.
+STEP 2: Check DVWA Folder
+Open terminal:
+Bash
+ls /var/www/html
+If no dvwa folder shown, install it.
+STEP 3: Install DVWA
+Run:
+Bash
+cd /var/www/html
+sudo git clone https://github.com/digininja/DVWA.git dvwa
+This creates:
+Plain text
+/var/www/html/dvwa
+STEP 4: Give Permission
+Bash
+sudo chmod -R 777 /var/www/html/dvwa
+STEP 5: Restart Services
+Bash
+sudo service apache2 restart
+sudo service mysql start
+STEP 6: Open Again
+Browser:
+Plain text
+http://localhost/dvwa
+Now DVWA page should open.
+STEP 7: Setup Config
+If config error comes:
+Bash
+cd /var/www/html/dvwa/config
+sudo cp config.inc.php.dist config.inc.php
+Then open DVWA again.
+STEP 8: Create Database
+Open DVWA page → click Create / Reset Database
+Then login:
+Plain text
+admin
+password
+WHY THIS HAPPENED
+404 means:
+Apache works
+Website path missing
+DVWA not copied into web root
+FASTEST COMMAND (All in One)
+Bash
+cd /var/www/html && sudo git clone https://github.com/digininja/DVWA.git dvwa
+FINAL FLOW
+Install DVWA → Put in /var/www/html → Restart Apache → Open localhost/dvwa
+If git clone gives error, send screenshot and I’ll give offline install method.
 
+
+STEP 1: Install Required Packages
+Open terminal:
+Bash
+sudo apt update
+sudo apt install apache2 mariadb-server php php-mysqli php-gd libapache2-mod-php git -y
+STEP 2: Start Services
+Bash
+sudo service apache2 start
+sudo service mariadb start
+STEP 3: Check DVWA Config File
+Run:
+Bash
+cd /var/www/html/dvwa/config
+ls
+If only config.inc.php.dist exists, run:
+Bash
+sudo cp config.inc.php.dist config.inc.php
+STEP 4: Fix Permissions
+Bash
+sudo chmod -R 777 /var/www/html/dvwa
+sudo chown -R www-data:www-data /var/www/html/dvwa
+STEP 5: Enable PHP Modules
+Bash
+sudo phpenmod mysqli
+sudo systemctl restart apache2
+STEP 6: Create Database
+Login MariaDB:
+Bash
+sudo mysql
+Then run inside MySQL:
+SQL
+create database dvwa;
+create user 'dvwa'@'localhost' identified by 'p@ssw0rd';
+grant all privileges on dvwa.* to 'dvwa'@'localhost';
+flush privileges;
+exit;
+STEP 7: Edit Config File
+Open:
+Bash
+sudo nano /var/www/html/dvwa/config/config.inc.php
+Find DB lines and set:
+PHP
+$_DVWA[ 'db_user' ] = 'dvwa';
+$_DVWA[ 'db_password' ] = 'p@ssw0rd';
+$_DVWA[ 'db_database' ] = 'dvwa';
+Save:
+Ctrl + O
+Enter
+Ctrl + X
+STEP 8: Restart Apache
+Bash
+sudo service apache2 restart
+STEP 9: Open Browser
+Plain text
+http://localhost/dvwa/setup.php
+Click:
+Create / Reset Database
+Then open:
+Plain text
+http://localhost/dvwa/login.php
+Login:
+Plain text
+admin
+password
+IF STILL ERROR
+Check exact error:
+Bash
+sudo tail -f /var/log/apache2/error.log
+Send screenshot of output.
+MOST COMMON REASON
+For Kali, usually missing:
+php-mysqli
+config file
+database credentials
 
 
 
